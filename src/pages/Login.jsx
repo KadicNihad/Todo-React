@@ -1,12 +1,21 @@
-import {Container,Row,Col,Card} from 'react-bootstrap';
+import {Container, Row, Col, Card, FloatingLabel, Form, Button} from 'react-bootstrap';
 function Login () {
     return(
-    <Container className='bg bg-danger'>
-        <Row className='jutstify-content-center'>
-            <Col>
-                <Card>
+    <Container className='justify-content-center mt-5'>
+        <Row  className='justify-content-center mt-5'>
+            <Col xs={8}  className='mt-5'>
+                <Card >
                     <Card.Body>
-                        <input type='text' className='form-control' />
+                        <FloatingLabel
+                            controlId="floatingInput"
+                            label="Email address"
+                            className="mb-3">
+                            <Form.Control type="email" placeholder="Email" />
+                        </FloatingLabel>
+                        <FloatingLabel controlId="floatingPassword" label="Password" className='mb-3'>
+                            <Form.Control type="password" placeholder="Password" />
+                        </FloatingLabel>
+                        <Button variant='primary' className='form-control'>Log In </Button>
                     </Card.Body>
                 </Card>
             </Col>
