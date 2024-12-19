@@ -5,7 +5,7 @@ const NavBar = () => {
     return (
         <Navbar bg="dark" variant="dark" expand="lg" className="px-3">
             <Container fluid className="text-center">
-                <Navbar.Brand as={Link} to="/">MyBrand</Navbar.Brand>
+                <Navbar.Brand as={Link} to="/tasks">MyBrand</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbar-collapse" />
                 <Navbar.Collapse id="navbar-collapse">
                     <Nav className="ms-auto">
