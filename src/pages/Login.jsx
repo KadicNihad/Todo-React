@@ -7,23 +7,16 @@ function Login() {
         handleSubmit,
         formState: {errors},
     } = useForm();
-
     const onSubmit = (data) => {
-
-
-
         const storedEmail = localStorage.getItem('email');
         const storedPassword = localStorage.getItem('password');
-
 
         if(data.email === storedEmail && data.password === storedPassword){
             alert('Podaci su tacni');
         }else {
             alert('Podaci nisu tacni');
         }
-
     }
-
     return (
         <Container className='mt-5'>
             <Row className='justify-content-center mt-5'>
