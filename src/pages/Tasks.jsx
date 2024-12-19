@@ -124,7 +124,7 @@ function Tasks() {
                                     key={t.id}
                                     className={`border border-default ${
                                         t.completed ? "bg-light" : ""
-                                    }`}
+                                    } mb-2`}
                                 >
                                     <Row className="p-2 align-items-center">
                                         <Col className="float-start col">
