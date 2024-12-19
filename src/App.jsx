@@ -1,11 +1,11 @@
-import './App.css'
-import {Container,Row,Col} from 'react-bootstrap';
-import NavBar from './components/Navbar.jsx';
-import Login from './pages/Login.jsx';
+import Tasks from './pages/Tasks.jsx'
+import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
 
   return (
-            <Login />
+      <>
+            <Tasks />
+      </>
   )
 }
 

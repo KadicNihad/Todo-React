@@ -10,11 +10,6 @@ function Account() {
             email:'',
             password:''
         });
-    const {
-        register,
-        handleSubmit,
-        formState: {errors},
-    } = useForm();
 
     useEffect (() => {
         const storedEmail = localStorage.getItem('email');
@@ -81,6 +76,7 @@ function Account() {
                                         type="text"
                                         placeholder="Last Name"
                                         name='lastName'
+                                        value={data.lastName}
                                         onChange={onHandleChange}
                                     />
                                 </FloatingLabel>

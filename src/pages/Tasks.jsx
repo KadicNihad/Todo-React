@@ -139,13 +139,13 @@ function Tasks() {
                                                 className="btn btn-warning me-2"
                                                 onClick={() => handleToggleComplete(t.id)}
                                             >
-                                                <FaEdit />
+                                                <FaEdit/>
                                             </Button>
                                             <Button
                                                 className="btn btn-danger"
                                                 onClick={() => handleDelete(t.id)}
                                             >
-                                                <FaTrash />
+                                                <FaTrash/>
                                             </Button>
                                         </Col>
                                     </Row>

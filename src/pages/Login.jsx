@@ -13,7 +13,7 @@ function Login() {
 
 
         const storedEmail = localStorage.getItem('email');
-        const storedPassword = localStorage.getItem('passwrod');
+        const storedPassword = localStorage.getItem('password');
 
 
         if(data.email === storedEmail && data.password === storedPassword){
