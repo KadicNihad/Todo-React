@@ -8,7 +8,7 @@ function Tasks() {
     const [search, setSearch] = useState("");
 
     const [tasks, setTasks] = useState(() => {
-        try {
+        try  {
             const storedTasks = JSON.parse(localStorage.getItem("tasks"));
             return storedTasks ? storedTasks : [];
         } catch (error) {
