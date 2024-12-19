@@ -1,7 +1,8 @@
 import {Container, Row, Col, Card, FloatingLabel, Form, Button} from 'react-bootstrap';
 import {useForm} from 'react-hook-form';
-
+import {useNavigate} from "react-router-dom";
 function Login() {
+    const navigate = useNavigate();
     const {
         register,
         handleSubmit,
@@ -13,9 +14,11 @@ function Login() {
 
         if(data.email === storedEmail && data.password === storedPassword){
             alert('Podaci su tacni');
+            navigate('/tasks');
         }else {
             alert('Podaci nisu tacni');
         }
+
     }
     return (
         <Container className='mt-5'>
