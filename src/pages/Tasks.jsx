@@ -40,7 +40,7 @@ function Tasks() {
         };
 
         setTasks([...tasks, newTask]);
-        setTask(""); //
+        setTask("");
     };
 
     const handleDelete = (id) => {
