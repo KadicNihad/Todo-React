@@ -48,7 +48,7 @@ function Account() {
 
 
     return (
-        <Container className='mt-5'>
+        <Container className='mt-5 bg-light'>
             <Row className='justify-content-center mt-5'>
                 <Col xs={12} xl={8} className='mt-5'>
                     <Card>
@@ -97,7 +97,9 @@ function Account() {
                                         type="email"
                                         value={data.email}
                                         readOnly
-                                        placeholder="Email" />
+                                        placeholder="Email"
+                                        style={{backgroundColor:'#e6e6e6'}}
+                                    />
                                 </FloatingLabel>
                                 <Button variant='primary' type='submit' className='form-control'>Log In </Button>
                             </Form>
