@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Account from "./pages/Account.jsx";
 import Login from "./pages/Login.jsx";
 import NavBar from "./components/Navbar.jsx";
+
 function App() {
 
   return (
