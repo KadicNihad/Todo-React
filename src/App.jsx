@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Account from "./pages/Account.jsx";
 import Login from "./pages/Login.jsx";
 import NavBar from "./components/Navbar.jsx";
+import Footer from './components/Footer.jsx';
+import './App.css';
 
 function App() {
 
@@ -16,6 +18,7 @@ function App() {
               <Route path="/account" element={<Account />} />
               <Route path="/login" element={<Login />} />
           </Routes>
+          <Footer />
       </Router>
   )
 }
