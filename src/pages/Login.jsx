@@ -30,7 +30,7 @@ function Login() {
                                 <FloatingLabel
                                     controlId="floatingInput"
                                     label="Email address"
-                                    className="mb3">
+                                    className="mb-3">
 
                                     <Form.Control
                                         type="email"
