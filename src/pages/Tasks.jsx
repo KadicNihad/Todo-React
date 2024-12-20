@@ -1,31 +1,46 @@
 import { Container, Card, Button, Row, Col, Form, FloatingLabel } from "react-bootstrap";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { useState, useEffect } from "react";
+import tasksService from '../services/tasks.js';
 
 function Tasks() {
     const [task, setTask] = useState("");
     const [filter, setFilter] = useState("All");
     const [search, setSearch] = useState("");
+    const [tasks, setTasks] = useState([]) ;
 
-    const [tasks, setTasks] = useState(() => {
-        try  {
-            const storedTasks = JSON.parse(localStorage.getItem("tasks"));
-            return storedTasks ? storedTasks : [];
-        } catch (error) {
-            console.error("Error loading tasks from localStorage:", error);
-            return [];
-        }
-    });
+    const mapTasks = () => {
+        return tasks.map(t => {
+            return (
+                <div key={t.id} className={t.completed ? 'border border-default bg-light mb-2' : ''}>
+                    <div className="row p-2 align-items-center">
+                        <div className="col float-start">
+                            <p
+                            className={t.completed ? 'text-decoration-line-through' : 'float-start border border-light'}
+                               style={{cursor: 'pointer'}}>
+                                {t.todo}
+                            </p>
+                        </div>
+                        <div className="col-auto">
+                            <button type="button" className="btn btn-warning">
+                                Edit
+                            </button>
+                            <button type="button" className="btn btn-danger">
+                                X
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )
+        })
+    };
 
-
-    useEffect(() => {
-        const storedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
-        setTasks(storedTasks);
+    useEffect( () => {
+        (async () => {
+            const response = await tasksService.list();
+            setTasks(response.todos)
+        })()
     }, []);
-
-    useEffect(() => {
-        localStorage.setItem("tasks", JSON.stringify(tasks));
-    }, [tasks]);
 
     const onSubmitClick = () => {
         if (!task.trim()) {
@@ -43,27 +58,27 @@ function Tasks() {
         setTask("");
     };
 
-    const handleDelete = (id) => {
+    const onDeleteClick = (id) => {
         const updatedTasks = tasks.filter((t) => t.id !== id);
         setTasks(updatedTasks);
     };
 
-    const handleToggleComplete = (id) => {
+    const onTaskClick = (id) => {
         const updatedTasks = tasks.map((t) =>
             t.id === id ? { ...t, completed: !t.completed } : t
         );
         setTasks(updatedTasks);
     };
 
-    const filteredTasks = tasks.filter((t) => {
-        const matchesFilter =
-            filter === "All" ||
-            (filter === "Complete" && t.completed) ||
-            (filter === "Uncomplete" && !t.completed);
+    // const filteredTasks = tasks.filter((t) => {
+    //     const matchesFilter =
+    //         filter === "All" ||
+    //         (filter === "Complete" && t.completed) ||
+    //         (filter === "Uncomplete" && !t.completed);
 
-        const matchesSearch = t.name.toLowerCase().includes(search.toLowerCase());
-        return matchesFilter && matchesSearch;
-    });
+    //     const matchesSearch = t.name.toLowerCase().includes(search.toLowerCase());
+    //     return matchesFilter && matchesSearch;
+    // });
 
     return (
         <Container>
@@ -71,7 +86,6 @@ function Tasks() {
                 <Col xs={12} xl={8}>
                     <Card>
                         <Card.Body>
-                            {/* Unos taska */}
                             <Row className="mb-3">
                                 <Col>
                                     <FloatingLabel controlId="floatingTask" label="Insert Task">
@@ -118,42 +132,9 @@ function Tasks() {
                                     </Form.Select>
                                 </Col>
                             </Row>
-
-                            {filteredTasks.map((t) => (
-                                <div
-                                    key={t.id}
-                                    className={`border border-default ${
-                                        t.completed ? "bg-light" : ""
-                                    } mb-2`}
-                                >
-                                    <Row className="p-2 align-items-center">
-                                        <Col className="float-start col">
-                                            <p onClick={() => handleToggleComplete(t.id)}
-                                                className={`card-title float-start cursor-pointer ${
-                                                    t.completed ? "text-decoration-line-through" : ""
-                                                }`} style={{cursor:"pointer"}}
-                                            >
-
-                                                {t.name}
-                                            </p>
-                                        </Col>
-                                        <Col className="col-auto">
-                                            <Button
-                                                className="btn btn-warning me-2"
-
-                                            >
-                                                <FaEdit/>
-                                            </Button>
-                                            <Button
-                                                className="btn btn-danger"
-                                                onClick={() => handleDelete(t.id)}
-                                            >
-                                                <FaTrash/>
-                                            </Button>
-                                        </Col>
-                                    </Row>
-                                </div>
-                            ))}
+                            <div id='response'>
+                                {mapTasks()}
+                            </div>
                         </Card.Body>
                     </Card>
                     <p className="text-end mt-3">Total: {tasks.length}</p>
