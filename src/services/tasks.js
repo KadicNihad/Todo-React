@@ -8,8 +8,15 @@ export const tasksService = {
     find(id) {
 
     },
-    create() {
+   async create() {
+        const response = await fetch('https://dummyjson.com/todos/add', {
+            method:'POST',
+            headers: {'Content-Type':'applications/json'},
+            body: JSON.stringify({
+                todo:
+            })
 
+       })
     },
     update(id, todo, completed, userId) {
 
