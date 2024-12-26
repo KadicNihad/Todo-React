@@ -13,20 +13,20 @@ function Tasks() {
         return tasks.map(t => {
             return (
                 <div key={t.id} className={t.completed ? 'border border-default bg-light mb-2' : ''}>
-                    <div className="row p-2 align-items-center">
-                        <div className="col float-start">
+                    <div className="row p-2 ">
+                        <div className="col align-items-center">
                             <p
-                            className={t.completed ? 'text-decoration-line-through' : 'float-start border border-light'}
-                               style={{cursor: 'pointer'}}>
+                            className={t.completed ? 'text-decoration-line-through float-start' : 'float-start border border-light'}
+                               style={{cursor: 'pointer'}} onClick={() => onTaskClick(t.id)}>
                                 {t.todo}
                             </p>
                         </div>
                         <div className="col-auto">
                             <button type="button" className="btn btn-warning">
-                                Edit
+                                <FaEdit />
                             </button>
-                            <button type="button" className="btn btn-danger">
-                                X
+                            <button type="button" className="btn btn-danger" onClick={() => onDeleteClick(t.id)}>
+                                <FaTrash />
                             </button>
                         </div>
                     </div>
@@ -50,7 +50,7 @@ function Tasks() {
 
         const newTask = {
             id: Date.now(),
-            name: task,
+            todo: task,
             completed: false,
         };
 
@@ -66,19 +66,20 @@ function Tasks() {
     const onTaskClick = (id) => {
         const updatedTasks = tasks.map((t) =>
             t.id === id ? { ...t, completed: !t.completed } : t
+
         );
         setTasks(updatedTasks);
     };
 
-    // const filteredTasks = tasks.filter((t) => {
-    //     const matchesFilter =
-    //         filter === "All" ||
-    //         (filter === "Complete" && t.completed) ||
-    //         (filter === "Uncomplete" && !t.completed);
+    const filteredTasks = tasks.filter((t) => {
+        const matchesFilter =
+            filter === "All" ||
+            (filter === "Complete" && t.completed) ||
+            (filter === "Uncomplete" && !t.completed);
 
-    //     const matchesSearch = t.name.toLowerCase().includes(search.toLowerCase());
-    //     return matchesFilter && matchesSearch;
-    // });
+         const matchesSearch = t.todo.toLowerCase().includes(search.toLowerCase());
+        return matchesFilter ;
+    });
 
     return (
         <Container>
