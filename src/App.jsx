@@ -5,7 +5,6 @@ import Account from "./pages/Account.jsx";
 import Login from "./pages/Login.jsx";
 import NavBar from "./components/Navbar.jsx";
 import Footer from './components/Footer.jsx';
-import './App.css';
 
 function App() {
 
